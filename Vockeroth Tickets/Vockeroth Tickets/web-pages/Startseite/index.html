@@ -1,0 +1,376 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Startseite</title>
+  <link rel="stylesheet" href="Startseite.de-DE.customcss.css" />
+  <link rel="stylesheet" href="bootstrap.min.css" />
+  <link rel="stylesheet" href="portalbasictheme.css" />
+  <link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+    <script src="Startseite.de-DE.customjs.js" defer=""></script>
+    <!-- ────────── HEADER / NAVBAR ────────── -->
+    <header class="main-navbar">
+      <!-- Logo-Link zurück zur Startseite -->
+      <a href="Startseite.html" class="logo-link" aria-label="Zur Startseite">
+        <!-- Dein Logo – bevorzugt als SVG oder PNG -->
+        <img src="Logo.png" alt="Vockeroth Logo">
+      </a>
+    
+      <!-- Dynamischer Standort‐Platzhalter (wird per JS aktualisiert) -->
+      <span id="filialnamePlaceholder" class="filial-name">
+        Standort unbekannt
+      </span>
+    </header>
+    
+    <!-- ────────── STYLE für den Header ────────── -->
+    <style>
+      /* Grundlayout */
+      .main-navbar {
+        position: sticky;
+        /* bleibt am oberen Rand kleben */
+        top: 0;
+        z-index: 1000;
+        /* über allen Inhalten */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.9rem 4.25rem;
+        /* etwas Luft links/rechts */
+        background: #fdfdfd;
+        /* weiß, wie im Screenshot */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        /* dezenter Strich unten */
+      }
+    
+      /* Logo */
+      .logo-link img {
+        height: 40px;
+        /* wie im Screenshot – ggf. anpassen */
+        width: auto;
+      }
+    
+      /* Standort‐Text rechts */
+      .filial-name {
+        font-weight: 700;
+        /* fett */
+        font-size: 2rem;
+        color: #000000;
+        /* schwarz wie im Screenshot */
+        white-space: nowrap;
+        /* verhindert Zeilenumbruch */
+      }
+    
+      /* Kleine Verbesserung für Tastatur‐/Mouse-Focus */
+      .logo-link:focus-visible {
+        outline: 2px solid #663300;
+        /* brauner Fokusrahmen */
+        outline-offset: 2px;
+      }
+    
+      /* ================ Grundlayout ================= */
+      .user-fields-wrapper {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto 30px;
+        display: flex;
+        justify-content: flex-end;
+        /* rechtsbündig */
+      }
+    
+      .user-fields {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        /* Labels schön bündig */
+      }
+    
+      /* ================ Input + Label =============== */
+      .form-field {
+        display: flex;
+        flex-direction: column;
+      }
+    
+      .form-field label {
+        font-size: 14.5px;
+        font-weight: 600;
+        color: #2d2d2d;
+        margin-bottom: 3px;
+        /* kleiner Abstand zur Box */
+      }
+    
+      .form-field input {
+        padding: 10px;
+        font-size: 16px;
+        width: 160px;
+        border: 2px solid transparent;
+        /* Platz für rote Fehler-Border */
+        border-radius: 6px;
+      }
+    
+      #saveBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 23.5px;
+      }
+    
+      /* ================ Responsiv: <1184 px ========== */
+      @media (max-width:1183px) {
+        .user-fields-wrapper {
+          justify-content: center;
+        }
+    
+        .user-fields {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+    
+        .form-field input {
+          flex: 1 1 120px;
+          max-width: 180px;
+        }
+      }
+    </style>
+    
+    <div id="savedNotice" class="saved-notice"
+      style="display: none; position: fixed; top: 20px; right: 20px; background-color: rgb(76, 175, 80); color: white; padding: 12px 20px; border-radius: 6px; z-index: 9999;">
+      ✅ Personalnummer und Filialnummer gespeichert!</div>
+    
+    <div class="page-wrapper">
+      <div class="center-content" style="background-color: #788f78;">
+        <!-- Personal- & Filialnummer -->
+        <div class="info-banner"><img src="../../web-files/3305969.png" alt="3305969" name="3305969.png"
+            class="info-icon" /><span id="infoText" style="font-size: 20px; line-height: 1.4; font-weight: bold;">Version
+            1.0: Bei Fragen oder Feedback einfach an j.claus@vockeroth.com schreiben.</span></div>
+        <!-- ───────── User-Eingaben ───────── -->
+        <div class="user-fields-wrapper" id="user-fields-wrapper">
+          <div class="user-fields">
+            <div class="form-field">
+              <label for="personalnummer">Personalnummer</label>
+              <input id="personalnummer" placeholder="Personalnummer" autocomplete="off">
+            </div>
+    
+            <div class="form-field">
+              <label for="filialnummer">Filialnummer</label>
+              <input id="filialnummer" placeholder="Filialnummer" autocomplete="off">
+            </div>
+    
+            <button id="saveBtn">Bestätigen</button>
+          </div>
+        </div>
+    
+        <!-- Kachel-Bereich -->
+        <div id="tileContainer" class="tile-container"
+          style="margin-top: 0px; margin-right: auto; margin-bottom: 40px; margin-left: auto; row-gap: 30px; column-gap: 30px; width: 100%; max-width: 1440px; margin: 0 auto 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+          <div data-kachelname="Zalando Bestellung nicht erfüllbar" class="tile clickable"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; color: rgb(17, 17, 17); flex: 0 0 450px; height: 230px; background-color: #f2f2f2; border-radius: 8px; text-align: center; padding: 30px 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+            <img src="../../web-files/zalando.png" alt="zalando"
+              style="margin-bottom: 15px; width: 65px; height: 65px;" /><strong style="font-size: 18px;">Zalando Bestellung
+              nicht erfüllbar</strong></div>
+          <div data-kachelname="Online Gutscheine" class="tile clickable"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; color: rgb(17, 17, 17); flex: 0 0 450px; height: 230px; background-color: #f2f2f2; border-radius: 8px; text-align: center; padding: 30px 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+            <img src="../../web-files/ASH2024GeschenkkarteGutschein.png" alt="Online Gutscheine"
+              style="margin-bottom: 15px; width: 65px; height: 65px;" /><strong style="font-size: 18px;">Online
+              Gutscheine</strong></div>
+          <div data-kachelname="Zalando Passwort zurücksetzen" class="tile clickable"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; color: rgb(17, 17, 17); flex: 0 0 450px; height: 230px; background-color: #f2f2f2; border-radius: 8px; text-align: center; padding: 30px 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+            <img src="../../web-files/lock.png" alt="Passwort zurücksetzen"
+              style="margin-bottom: 15px; width: 65px; height: 65px;" /><strong style="font-size: 18px;">Zalando Passwort
+              zurücksetzen</strong></div>
+          <div data-kachelname="Sonstiges Anliegen" class="tile clickable"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; color: rgb(17, 17, 17); flex: 0 0 450px; height: 230px; background-color: #f2f2f2; border-radius: 8px; text-align: center; padding: 30px 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="Sonstiges Anliegen"
+              style="margin-bottom: 15px; width: 65px; height: 65px;" /><strong style="font-size: 18px;">Sonstiges
+              Anliegen</strong></div>
+          <div data-kachelname="Coming Soon" class="tile clickable"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; color: rgb(17, 17, 17); filter: grayscale(100%); opacity: 0.6; pointer-events: none; flex: 0 0 450px; height: 230px; background-color: #f2f2f2; border-radius: 8px; text-align: center; padding: 30px 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+            <img src="../../web-files/4877129-200.png" alt="Coming Soon"
+              style="margin-bottom: 15px; width: 65px; height: 65px;" /><strong style="font-size: 18px;">Coming
+              Soon</strong></div>
+          <div data-kachelname="Coming Soon" class="tile clickable"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; color: rgb(17, 17, 17); filter: grayscale(100%); opacity: 0.6; pointer-events: none; flex: 0 0 450px; height: 230px; background-color: #f2f2f2; border-radius: 8px; text-align: center; padding: 30px 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+            <img src="../../web-files/4877129-200.png" alt="Coming Soon"
+              style="margin-bottom: 15px; width: 65px; height: 65px;" /><strong style="font-size: 18px;">Coming
+              Soon</strong></div>
+        </div>
+        <!-- Online-Gutscheine -->
+        <div id="gutscheinContainer" class="gutschein-container"
+          style="row-gap: 20px; column-gap: 20px; margin-top: 20px; margin-right: auto; margin-bottom: 0px; margin-left: auto; display: none; flex-direction: column; align-items: center; gap: 20px; margin: 20px auto; width: 100%; max-width: 1440px;">
+          <h2 id="gutscheinHeadline" style="color: white;"></h2>
+          <div id="kachelCode" class="code-box"
+            style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: black; border-right-color: black; border-bottom-color: black; border-left-color: black; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; display: flex; align-items: center; justify-content: center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; width: 400px; height: 100px;">
+            <input id="gutscheinInput" type="text" placeholder="Gutscheincode"
+              style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-top-width: initial; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; background-image: none; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: initial; outline-color: initial; outline-style: none; outline-width: initial; font-size: 18px; width: 90%; text-align: center;" />
+          </div>
+          <div id="kachelWert" class="code-box"
+            style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: black; border-right-color: black; border-bottom-color: black; border-left-color: black; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; display: flex; align-items: center; justify-content: center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; width: 400px; height: 100px;">
+            <input id="gutscheinWertInput" type="text" placeholder="Gutscheinwert"
+              style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-top-width: initial; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; background-image: none; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: initial; outline-color: initial; outline-style: none; outline-width: initial; font-size: 18px; width: 90%; text-align: center;" />
+          </div>
+          <div id="sendeBestaetigung" class="gutschein-confirmation"
+            style="background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(76, 175, 80); color: white; padding-top: 15px; padding-right: 25px; padding-bottom: 15px; padding-left: 25px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; display: none; margin-top: 20px;">
+            ✅ Gutscheincode erfolgreich gesendet!</div>
+          <div class="arrow-controls" style="display: flex; align-items: center; gap: 40px; margin: 10px 0;"><button
+              id="arrowPrev" type="button"
+              style="font-size: 80px; background: none; border: none; cursor: pointer;">←</button><button id="arrowNext"
+              type="button" style="font-size: 80px; background: none; border: none; cursor: pointer;">→</button></div>
+    
+        </div>
+        <!-- Popup -->
+        <div id="customPopup" class="custom-popup"
+          style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: white; color: black; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 15px; z-index: 99999; text-align: center; width: 90%; max-width: 400px; display: none;">
+          <p style="margin-bottom: 20px; font-size: 18px;">Sind die eingegebenen Werte korrekt?</p>
+          <button id="popupYes"
+            style="margin-top: 0px; margin-right: 5px; margin-bottom: 0px; margin-left: 5px; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px;">✅
+            Ja</button><button id="popupNo"
+            style="margin-top: 0px; margin-right: 5px; margin-bottom: 0px; margin-left: 5px; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px;">❌
+            Nein</button>
+        </div>
+        <!-- Zalando Bestellung nicht erfüllbar – Schritt 1 -->
+        <div id="containerBestellungNichtErfuellbar" class="gutschein-container"
+          style="row-gap: 20px; column-gap: 20px; margin-top: 20px; margin-right: auto; margin-bottom: 0px; margin-left: auto; display: none; flex-direction: column; align-items: center; gap: 20px; margin: 20px auto; width: 100%; max-width: 1440px;">
+          <h2 style="color: white;">Gebe die Order-ID ein:</h2>
+          <span style="color: white;">(Beispiel: 10103511225937)</span>
+    
+          <div id="box1" class="code-box"
+            style="border: 2px solid black; display: flex; align-items: center; justify-content: center; border-radius: 6px; width: 400px; height: 100px;">
+            <input id="input1" type="text" placeholder="Order ID"
+              style="font-size: 18px; width: 90%; text-align: center; border: none;" />
+          </div>
+    
+          <div class="arrow-controls"
+            style="display: flex; justify-content: center; align-items: center; gap: 40px; width: 100%;">
+            <button id="arrowPrev" type="button"
+              style="font-size: 80px; background: none; border: none; cursor: pointer;">←</button>
+            <button id="nextArrow" type="button"
+              style="font-size: 80px; background: none; border: none; cursor: pointer; color: white;">→</button>
+          </div>
+        </div>
+    
+    
+    
+        <!-- Schritt 2 -->
+        <div id="containerBestellungStep2" class="gutschein-container"
+          style="row-gap: 20px; column-gap: 20px; margin: 20px auto 0; display: none; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 1440px;">
+          <h2 style="color: white;">Gebe die Ean ein</h2>
+    
+          <!-- EAN 1 -->
+          <div id="kachelEAN1" class="code-box"
+            style="border: 2px solid black; display: flex; align-items: center; justify-content: center; border-radius: 6px; width: 400px; height: 100px;">
+            <input id="step2Input1" type="text" placeholder="EAN 1"
+              style="font-size: 18px; width: 90%; text-align: center; border: none;" />
+          </div>
+    
+          <!-- Button zum Hinzufügen von EAN 2 -->
+          <div id="addSecondEANBox" class="code-box"
+            style="border: 2px dashed white; display: flex; align-items: center; justify-content: center; border-radius: 6px; width: 400px; height: 100px; color: white; cursor: pointer;">
+            + Doppeltbestellung hinzufügen
+          </div>
+    
+    
+          <!-- EAN 2 (versteckt bis Klick auf Button) -->
+          <div id="kachelEAN2" class="code-box"
+            style="border: 2px solid black; display: none; align-items: center; justify-content: center; border-radius: 6px; width: 400px; height: 100px;">
+            <input id="step2Input2" type="text" placeholder="EAN 2 (optional)"
+              style="font-size: 18px; width: 90%; text-align: center; border: none;" />
+          </div>
+    
+          <!-- Pfeilsteuerung -->
+          <div class="arrow-controls" style="display: flex; align-items: center; gap: 40px;">
+            <button id="backBtn" type="button"
+              style="font-size: 80px; background: none; border: none; cursor: pointer;">←</button>
+            <button id="step2Confirm" type="button"
+              style="font-size: 80px; background: none; border: none; cursor: pointer; color: white;">→</button>
+          </div>
+        </div>
+    
+        <!-- Gründe -->
+        <div id="containerBestellungOpt1" class="bestellung-opt1"
+          style="margin-top: 40px; margin-right: auto; margin-bottom: 40px; margin-left: auto; max-width: 800px; flex-direction: column; align-items: center; row-gap: 20px; column-gap: 20px; justify-content: center; display: none;">
+          <h2>Wähle einen Grund aus:</h2>
+    
+          <div id="reasonGrid1" class="reason-grid"
+            style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px;">
+          </div>
+    
+          <!-- Neuer Pfeil-Button -->
+          <div style="margin-top: 20px;">
+            <button id="confirmReasonBtn" type="button"
+              style="font-size: 60px; border: none; background: none; color: white; cursor: pointer;">→</button>
+          </div>
+        </div>
+    
+        <div id="containerBestellungOpt2" class="bestellung-opt2"
+          style="margin-top: 40px; margin-right: auto; margin-bottom: 40px; margin-left: auto; max-width: 800px; flex-direction: column; align-items: center; row-gap: 20px; column-gap: 20px; justify-content: center; display: none;">
+          <h2>Wähle zwei Eans aus:</h2>
+    
+          <div id="reasonGrid2" class="reason-grid"
+            style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px;">
+          </div>
+    
+          <!-- Neuer Pfeil-Button -->
+          <div style="margin-top: 20px;">
+            <button id="confirmReasonBtn2" type="button"
+              style="font-size: 60px; border: none; background: none; color: white; cursor: pointer;">→</button>
+          </div>
+        </div>
+    
+    
+    
+    
+        <!-- Passwort zurücksetzen -->
+        <div id="containerPasswortResetStep1" class="bestellung-step1"
+          style="margin-top: 40px; margin-right: auto; margin-bottom: 40px; margin-left: auto; width: 100%; max-width: 800px; row-gap: 20px; column-gap: 20px; align-items: center; display: none; justify-content: center; gap: 20px;">
+          <div data-reason="Zugang vergessen" class="tile clickable passwort-reason"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; height: 230px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(242, 242, 242); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; text-align: center; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 12px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; display: flex; flex-direction: column; justify-content: center; align-items: center; color: rgb(17, 17, 17); cursor: pointer;">
+            Zugang vergessen</div>
+          <div data-reason="Login sperrt sich" class="tile clickable passwort-reason"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; height: 230px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(242, 242, 242); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; text-align: center; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 12px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; display: flex; flex-direction: column; justify-content: center; align-items: center; color: rgb(17, 17, 17); cursor: pointer;">
+            Login sperrt sich</div>
+          <div data-reason="Technisches Problem" class="tile clickable passwort-reason"
+            style="flex-grow: 0; flex-shrink: 0; flex-basis: 450px; height: 230px; background-image: initial; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(242, 242, 242); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; text-align: center; padding-top: 30px; padding-right: 20px; padding-bottom: 30px; padding-left: 20px; box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 12px; transition-behavior: normal; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; transition-property: transform; display: flex; flex-direction: column; justify-content: center; align-items: center; color: rgb(17, 17, 17); cursor: pointer;">
+            Technisches Problem</div>
+        </div>
+        <div id="containerPasswortResetStep2" class="gutschein-container"
+          style="row-gap: 20px; column-gap: 20px; margin-right: auto; margin-bottom: 0px; margin-left: auto; width: 100%; max-width: 1440px; display: none; flex-direction: column; align-items: center; gap: 20px; margin-top: 20px;">
+          <h2 id="passwortHeadline" style="color: white;"></h2>
+          <div class="code-box"
+            style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: black; border-right-color: black; border-bottom-color: black; border-left-color: black; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; display: flex; align-items: center; justify-content: center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; width: 400px; height: 100px;">
+            <input id="newPasswordInput" type="password" placeholder="Neues Passwort"
+              style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-top-width: initial; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; background-image: none; background-position-x: initial; background-position-y: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: initial; outline-color: initial; outline-style: none; outline-width: initial; font-size: 18px; width: 90%; text-align: center;" />
+          </div>
+          <div class="arrow-controls" style="display: flex; align-items: center; gap: 40px;"><button id="passwordPrev"
+              type="button" style="font-size: 80px; background: none; border: none; cursor: pointer;">←</button><button
+              id="passwordConfirm" type="button"
+              style="font-size: 80px; background: none; border: none; cursor: pointer;">→</button></div>
+        </div>
+        <!-- Sonstiges Anliegen -->
+        <div id="containerSonstiges" class="gutschein-container"
+          style="row-gap: 20px; column-gap: 20px; margin-right: auto; margin-bottom: 0px; margin-left: auto; width: 100%; max-width: 1440px; display: none; flex-direction: column; align-items: center; gap: 20px; margin-top: 20px;">
+          <h2 style="color: white;">Trage hier dein Anliegen ein</h2>
+          <div class="code-box"
+            style="border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: black; border-right-color: black; border-bottom-color: black; border-left-color: black; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; display: flex; align-items: center; justify-content: center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; width: 400px; height: 100px;">
+            <input id="sonstigesInput" placeholder="Ihr Anliegen"
+              style="font-size: 18px; width: 90%; height: 80px; padding: 10px;"></input></div>
+          <div class="arrow-controls" style="display: flex; align-items: center; gap: 40px;"><button id="sonstigesPrev"
+              type="button" style="font-size: 80px; background: none; border: none; cursor: pointer;">←</button><button
+              id="sonstigesConfirm" type="button"
+              style="font-size: 80px; background: none; border: none; cursor: pointer;">→</button></div>
+        </div>
+      </div>
+    
+    </div>
+    <!-- Footer fallback / zusätzliche Layout-Divs 
+    <div class="row sectionBlockLayout text-left" style="display: flex; flex-wrap: wrap; padding: 8px; margin: 0px;">
+      <div class="container"><div class="col-md-12 columnBlockLayout" style="flex-grow: 1; display: flex; flex-direction: column; min-width: 250px;"></div></div>
+    </div>
+    -->
+
+</body>
+</html>
+
+
