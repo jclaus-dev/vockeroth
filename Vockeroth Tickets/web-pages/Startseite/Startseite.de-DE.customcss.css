@@ -1,0 +1,542 @@
+/* Grundlayout */
+body {
+  overflow-x: hidden !important;
+  margin: 0;
+  background-color: #788f78 !important;
+}
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.center-content {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 40px;
+}
+
+/* Info-Banner */
+.info-banner {
+  background-color: #f9ca3c;
+  color: #111;
+  width: 80.6%;
+  max-width: 1440px;
+  margin: 0 auto 40px;
+  border-radius: 8px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  box-shadow: rgba(0,0,0,0.2) 0px 6px 12px;
+}
+.info-banner .info-icon {
+  width: 40px;
+  height: 40px;
+}
+#infoText {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+/* Nutzer-Felder */
+.user-fields-wrapper {
+  width: 100%;
+  max-width: 1418px !important;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width:1184px) {
+  .user-fields-wrapper {
+    width: 783px !important;
+    /* falls nötig untereinander umbrechen */
+  }
+}
+
+.user-fields {
+  display: flex;
+  gap: 15px;
+}
+.user-fields input {
+  padding: 10px;
+  font-size: 16px;
+  width: 160px;
+  border-radius: 6px;
+  border: none;
+}
+.user-fields button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Kachel-Layout */
+.tile-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 30px;
+  column-gap: 30px;
+}
+.tile {
+  flex: 0 0 450px;
+  height: 230px;
+  background: #F2F2F2;
+  border-radius: 8px;
+  text-align: center;
+  padding: 30px 20px;
+  box-shadow: rgba(0,0,0,0.15) 0px 6px 12px;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #111;
+}
+
+.tile img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+.tile strong {
+  font-size: 18px;
+}
+
+/* Gutschein */
+.gutschein-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px auto 0;
+  width: 100%;
+  max-width: 1440px;
+}
+.gutschein-container h2 {
+  color: white;
+}
+.code-box {
+  border: 2px solid black;
+  width: 400px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+.code-box input {
+  font-size: 18px;
+  padding: 10px;
+  width: 90%;
+  border: none;
+  text-align: center;
+  background: none;
+  outline: none;
+}
+.gutschein-buttons {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+.gutschein-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.gutschein-buttons button:last-child {
+  background: #999;
+  color: white;
+  border: none;
+}
+.gutschein-confirmation {
+  display: none;
+  margin-top: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 6px;
+}
+
+/* Bestellung nicht erfüllbar – Schritt 1 */
+.bestellung-step1 {
+  display: none;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 1000px;
+  gap: 20px;
+  justify-content: space-between;
+  display: flex;
+}
+.bestellung-box {
+  flex: 1;
+  max-width: 450px;
+  height: 230px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bestellung-box input {
+  width: 90%;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 18px;
+}
+#nextArrow {
+  width: 60px;
+/*height: 60px; */
+  background: center/contain no-repeat url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234caf50' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>");
+  cursor: pointer;
+}
+
+
+/* Bestellung nicht erfüllbar – Schritt 2 */
+.bestellung-step2 {
+  display: none;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 1000px;
+  gap: 20px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+.bestellung-step2 input {
+  padding: 10px;
+  width: 300px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+#step2Confirm {
+  padding: 10px 20px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Optionen bei 1 vs. 2 EAN */
+.bestellung-opt1,
+.bestellung-opt2 {
+  display: none;
+  margin: 40px auto;
+  max-width: 800px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  display: flex;
+}
+.bestellung-opt1 input,
+.bestellung-opt2 input {
+  padding: 10px;
+  width: 300px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.bestellung-opt1 button,
+.bestellung-opt2 button {
+  padding: 10px 20px;
+  background: #4caf50;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Passwort zurücksetzen */
+.container-passwort-reset {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.container-passwort-reset select,
+.container-passwort-reset textarea {
+  padding: 10px;
+  width: 300px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: none;
+}
+.passwort-buttons {
+  display: flex;
+  gap: 10px;
+}
+.passwort-buttons button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.passwort-buttons button:last-child {
+  background: #4caf50;
+  color: white;
+  border: none;
+}
+.passwort-buttons button:first-child {
+  background: #999;
+  color: white;
+  border: none;
+}
+
+/* Sonstiges Anliegen */
+.container-sonstiges {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.container-sonstiges textarea {
+  padding: 10px;
+  width: 300px;
+  height: 100px;
+  border-radius: 6px;
+  border: none;
+}
+.sonstiges-buttons {
+  display: flex;
+  gap: 10px;
+}
+.sonstiges-buttons button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.sonstiges-buttons button:last-child {
+  background: #4caf50;
+  color: white;
+  border: none;
+}
+.sonstiges-buttons button:first-child {
+  background: #999;
+  color: white;
+  border: none;
+}
+
+/* Popup */
+.custom-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: black;
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  z-index: 99999;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+.custom-popup p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.custom-popup button {
+  margin: 0 5px;
+  padding: 10px 20px;
+}/* ─── Deaktivierte Kacheln & Coming-Soon ─── */
+.tile.clickable.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ─── Reason-Grid Layout & Buttons ─── */
+.reason-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+.reason-grid button {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 6px;
+  background: #eee;
+  cursor: pointer;
+  outline: none;    /* kein default Fokusrahmen */
+  position: relative; /* für remove-tag absolut */
+  min-height: 60px;
+  transition: transform 0.1s ease, border-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Wenn ausgewählt: grüner Rand */
+.reason-grid button.selected {
+  border-color: #4caf50;
+}
+
+/* Tastatur-Fokus: leichte Vergrößerung + Schatten */
+.reason-grid button.keyboard-selected {
+  transform: scale(1.10);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Hover‐Effekt (optional, damit Maus‐Scroll sich ähnlich anfühlt) */
+.reason-grid button:hover {
+  transform: scale(1.10);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── EAN-Tags innerhalb eines Buttons ─── */
+.ean-tags {
+  margin-top: 4px;
+  font-size: 12px;
+  color: white;
+  background-color: rgba(0, 150, 0, 0.7);
+  border-radius: 4px;
+  padding: 2px 4px;
+  text-align: center;
+}
+.ean-tags div {
+  font-weight: bold;
+  margin: 2px 0;
+}
+
+/* ─── Entfernen-„×“ (remove-tag) ─── */
+.remove-tag {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: black !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── Confirm-Buttons (confirmReason & confirmReason2) ─── */
+button#confirmReason:disabled,
+button#confirmReason2:disabled {
+  color: white !important;
+  cursor: not-allowed;
+}
+button#confirmReason:enabled,
+button#confirmReason2:enabled {
+  color: #4caf50 !important;
+  cursor: pointer;
+}
+
+
+
+/* Spezielles Styling für 4:3-Monitore bei 1024×768 */
+/* Für alle Bildschirmgrößen mit genauem Seitenverhältnis 4:3 */
+@media (aspect-ratio: 4/3) {
+  /* Info-Banner auf feste Breite 920px statt 100% */
+  .info-banner {
+    width: 920px !important;
+    max-width: 920px;
+    margin: 0 auto; /* zentriert, falls gewünscht */
+  }
+
+  /* user-fields-wrapper auf 91% Breite */
+  #user-fields-wrapper {
+    width: 91% !important;
+    max-width: none; /* falls vorher max-width gesetzt war */
+    margin: 0 auto;  /* zentrieren, falls nötig */
+  }
+}
+
+
+/* 1) Grundzustand für alle klickbaren Kacheln */
+.tile.clickable {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* 2) Wenn eine Kachel per Maus gehovt wird ODER per Tastatur ausgewählt ist */
+.tile.clickable:hover,
+.tile.clickable.keyboard-selected {
+  transform: scale(1.10);               /* um 10 % vergrößern */
+  z-index: 2;                           /* ggf. in den Vordergrund setzen */
+  border: none !important;              /* schwarzen Rahmen entfernen */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* optional: leichter Schatten */
+}
+
+/* 3) „Coming Soon“-Kacheln bleiben ausgegraut und nicht fokussierbar */
+.tile[data-kachelname="Coming Soon"] {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+#kachelEAN2 {
+  display: none; /* initial hidden */
+  justify-content: center;
+  align-items: center;
+}
+
+.blink-placeholder::placeholder {
+  color: #4caf50;
+  animation: blinkPlaceholder 1s steps(2, start) infinite;
+}
+
+@keyframes blinkPlaceholder {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+input:focus {
+  caret-color: #267928;
+}
+
+/* ---- Breakpoint: ≤ 1240 px Breite UND ≤ 776 px Höhe ---- */
+@media (max-width: 1280px) and (max-height: 863px) {
+
+  /* Wrapper breiter ausnutzen */
+  .info-banner {
+    max-width: 1190px !important
+  }
+
+  .user-fields-wrapper {
+    width: 100%;
+    max-width: 1190px !important
+  }
+
+  /* Kacheln nebeneinander reduzieren */
+  .tile {
+    flex: 0 0 375px !important;
+    height: 195px !important;
+  }
+}
+
+/* Blendet ALLE leeren „SectionBlockLayout“-Zeilen aus */
+.row.sectionBlockLayout.text-left:empty {
+  display: none !important;
+}
+
+/* Oder noch einfacher, wenn dir die :empty-Prüfung egal ist */
+.row.sectionBlockLayout.text-left {
+  display: none !important;
+}
+
+

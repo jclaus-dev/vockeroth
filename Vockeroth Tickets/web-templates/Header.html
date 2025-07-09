@@ -1,0 +1,75 @@
+{% assign defaultlang = settings['LanguageLocale/Code'] | default: 'en-us' %}
+{% assign homeurl = website.adx_partialurl %}
+<div class='navbar navbar-inverse navbar-static-top' role='banner'>
+  <div class='skip-to-content'>
+    <a href='#mainContent'>{{ resx.Skip_To_Content | default: 'Skip to main content' }}</a>
+  </div>
+  <div class='container'>
+    <div class='navbar-header'>
+      <div class='visible-sm-block visible-md-block visible-lg-block visible-xs-block navbar-brand'>
+        {% editable snippets 'Mobile Header' type: 'html' %}
+      </div>
+      <button type='button' class='navbar-toggle collapsed' title='{{ snippets["Header/Toggle Navigation"] | default: resx['Toggle_Navigation'] | h }}' data-toggle='collapse' data-target='#navbar' aria-expanded='false' onclick='setHeight();'>
+        <span class='sr-only'>{{ snippets['Header/Toggle Navigation'] | default: resx.Toggle_Navigation | h }}</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+    </div>
+
+    <div id='navbar' class='navbar-collapse collapse'>
+      <nav class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a id="filialnamePlaceholder" style="font-weight: bold;">Standort unbekannt</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+{% substitution %}
+{% assign current_page = page.id %}
+{% assign sr_page = sitemarkers.Search.id %}
+{% assign forum_page = sitemarkers.Forums.id %}
+{% if current_page %}
+  {% if current_page == sr_page or current_page == forum_page %}
+    {% assign section_class = 'section-landing-search' %}
+    {% if current_page == forum_page %}
+      {% assign section_class = 'section-landing-forums' %}
+    {% endif %}
+    <section class='page_section {{ section_class | h }} color-inverse'>
+      <div class='row sectionBlockLayout sectionFixedStyle' style='display: flex; flex-wrap: wrap; text-align: center;'>
+        <div class='container' style='display: flex; flex-wrap: wrap;'>
+          <div class='col-md-12 columnBlockLayout' style='display: flex; flex-direction: column; justify-content: center;'>
+            {% if current_page == sr_page %}
+              <h1 id='mainContent'>{% editable snippets 'Search/Title' default: resx["Discover_Contoso"] %}</h1>
+              {% include 'Search', search_id: 'search_control' %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endif %}
+{% endsubstitution %}
+
+<script type='text/javascript'>
+  window.onload = function () {
+    if (window.navigator.appName == 'Microsoft Internet Explorer' || window.navigator.userAgent.indexOf('Trident') > 0) {
+      var searchElement = document.getElementById('search');
+      if (searchElement != null) searchElement.setAttribute('href', '');
+    }
+  };
+  function setHeight() {
+    var windowHeight = window.innerHeight - 140;
+    var navbar = document.getElementById('navbar');
+    if (navbar) {
+      navbar.style.maxHeight = windowHeight + 'px';
+    }
+  }
+  window.addEventListener('resize', function (event) {
+    setHeight();
+  });
+</script>
